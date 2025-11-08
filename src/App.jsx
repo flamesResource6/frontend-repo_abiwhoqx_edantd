@@ -1,28 +1,40 @@
-import { useState } from 'react'
+import React from 'react';
+import HeroSection from './components/HeroSection';
+import AboutSection from './components/AboutSection';
+import ExperienceSection from './components/ExperienceSection';
+import ProjectsSection from './components/ProjectsSection';
+import ContactSection from './components/ContactSection';
 
-function App() {
-  const [count, setCount] = useState(0)
-
+function Navbar() {
+  const links = [
+    { href: '#home', label: 'Home' },
+    { href: '#about', label: 'About' },
+    { href: '#experience', label: 'Experience' },
+    { href: '#projects', label: 'Projects' },
+    { href: '#contact', label: 'Contact' },
+  ];
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-blue-50 flex items-center justify-center">
-      <div className="bg-white p-8 rounded-lg shadow-lg">
-        <h1 className="text-3xl font-bold text-gray-800 mb-4">
-          Vibe Coding Platform
-        </h1>
-        <p className="text-gray-600 mb-6">
-          Your AI-powered development environment
-        </p>
-        <div className="text-center">
-          <button
-            onClick={() => setCount(count + 1)}
-            className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded"
-          >
-            Count is {count}
-          </button>
-        </div>
-      </div>
+    <div className="fixed left-0 right-0 top-0 z-50 mx-auto mt-4 flex max-w-5xl items-center justify-center">
+      <nav className="flex items-center gap-3 rounded-full border border-white/10 bg-black/40 px-3 py-2 text-sm text-white/80 backdrop-blur-xl">
+        {links.map((l) => (
+          <a key={l.href} href={l.href} className="rounded-full px-3 py-1 text-white/80 transition hover:bg-white/10 hover:text-white">
+            {l.label}
+          </a>
+        ))}
+      </nav>
     </div>
-  )
+  );
 }
 
-export default App
+export default function App() {
+  return (
+    <div className="min-h-screen w-full bg-black font-[Inter]">
+      <Navbar />
+      <HeroSection />
+      <AboutSection />
+      <ExperienceSection />
+      <ProjectsSection />
+      <ContactSection />
+    </div>
+  );
+}
